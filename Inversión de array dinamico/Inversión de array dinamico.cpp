@@ -5,7 +5,7 @@ using namespace std;
 class Array
 {
 private:
-    int tamano = 1;
+    int tamano = 0;
     string* matriz = new string [1];
 
 public:
@@ -13,16 +13,16 @@ public:
 
     void agregar(string palabra)
     {
-        matriz = ampliar(matriz, tamano);
-        tamano++;
+        matriz = ampliar(matriz);
+        matriz[tamano - 1] = palabra;
     };
 
-    string* ampliar(string* matriz, int tamano)
+    string* ampliar(string* matriz)
     {
-        int tamano2 = tamano++;
-        string* nuevo = new string[tamano2];
+        tamano++;
+        string* nuevo = new string[tamano];
 
-        for (int i = 0; i < tamano; i++)
+        for (int i = 0; i < tamano - 1; i++)
         {
             nuevo[i] = matriz[i];
         };
