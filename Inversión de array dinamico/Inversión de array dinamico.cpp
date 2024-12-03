@@ -5,24 +5,21 @@ using namespace std;
 class Array
 {
 private:
-    int tamano = 0;
-    string* matriz = new string [1];
-
+    string* matriz = new string [0];
+    int tamano=0;
 public:
     Array() {};
-
     void agregar(string palabra)
     {
         matriz = ampliar(matriz);
-        matriz[tamano - 1] = palabra;
+        matriz[tamano] = palabra;
+        tamano++;
     };
 
     string* ampliar(string* matriz)
     {
-        tamano++;
-        string* nuevo = new string[tamano];
-
-        for (int i = 0; i < tamano - 1; i++)
+        string* nuevo = new string[tamano + 1];
+        for (int i = 0; i < tamano; i++)
         {
             nuevo[i] = matriz[i];
         };
@@ -33,29 +30,41 @@ public:
     {
         for (int i = 0; i < tamano; i++)
         {
-            cout << matriz[i] << "  ";
+            cout << matriz[i] << " | ";
         };
-        cout << endl << "tamano matriz: " << tamano << endl;
     };
 
-};
+    void invertir()
+    {
+        cout <<endl<< "invirtiendo: " << endl;
 
+        string* aux = new string[tamano];
+        for (int i = 0; i < tamano; i++)
+        {
+            aux[i] = matriz[tamano-1-i];
+        };
+        matriz = aux;
+    };
+};
 
 
 int main()
 {
     Array test;
-    string x = "pinga";
-    string c = "cachumba";
+    string a = "Uno";
+    string b = "Dos";
+    string c = "Tres";
+    string d = "Cuatro";
 
-
-    test.agregar(x);
+    test.agregar(a);
+    test.agregar(b);
     test.agregar(c);
+    test.agregar(d);
+
     test.imprimir();
 
-   
-   
-
+    test.invertir();
+    test.imprimir();
 };
 
 /*
